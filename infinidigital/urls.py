@@ -21,6 +21,8 @@ from django.urls import path
 from products import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,10 +37,15 @@ urlpatterns = [
     path('Courses',views.courses),
     path('Tools',views.tools),
     path('Contact',views.contact, name = "contact"),
-    path('Cart',views.cart, name = "cart"),
+    path('Cart/<int:id>/',views.cart, name = "cart"),
     path('Signup',views.signup, name = "signup"),
     path('Signout/', views.signout, name='signout'),
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
+    path(
+        "template_demo/<path:path>",
+        serve,
+        {"document_root": settings.DEMO_ROOT},
+    ),
 ]
 
 if settings.DEBUG:

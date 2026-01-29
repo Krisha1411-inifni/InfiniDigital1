@@ -15,9 +15,15 @@ class Product(models.Model):
     ProductDiscountPrice = models.FloatField()
     ShortDescription = models.TextField()
     LongDescription = models.TextField()
-    ProductImage1 = models.ImageField(upload_to='products/products/')
-    ProductImage2 = models.ImageField(upload_to='products/products/')
-    ProductImage3 = models.ImageField(upload_to='products/products/')
+    ProductImage1 = models.ImageField(upload_to='products/productsimages/')
+    ProductImage2 = models.ImageField(upload_to='products/productsimages/')
+    ProductImage3 = models.ImageField(upload_to='products/productsimages/')
     ProductFile = models.FileField(upload_to='products/productsFile/')
     CreationDate = models.DateTimeField(auto_now_add=True)
     UpdationDate = models.DateTimeField(auto_now_add=True)
+
+    DemoFolder = models.CharField(max_length=255,
+        blank=True,
+        help_text="Auto-generated demo folder name"
+    )
+

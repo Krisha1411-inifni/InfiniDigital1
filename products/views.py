@@ -53,8 +53,9 @@ def tools(request):
 def contact(request):
     return render(request,'contact.html')
 
-def cart(request):
-    return render(request,'cart.html')
+def cart(request, id):
+    product = Product.objects.get(id = id)
+    return render(request,'cart.html',{"cartproduct" : product})
 
 
 def signup(request):

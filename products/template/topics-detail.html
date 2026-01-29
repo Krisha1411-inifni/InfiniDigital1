@@ -70,68 +70,171 @@
             </header>
 
 
-            <section class="topics-detail-section section-padding" id="topics-detail">
+            <section class="product-detail section-padding" id="product-detail">
                 <div class="container">
-                    <div class="row">
 
-                        <div class="col-lg-8 col-12 m-auto">
-                            <h3 class="mb-4 text-white">Introduction to {{ product.ProductName }}</h3>
-
-                            <p>{{ product.LongDescription}}</p>
-
-
-
-                            <blockquote>
-                                <strike>₹{{product.ProductPrice}}</strike>
-                            </blockquote>
-                            <blockquote>
-                                ₹{{product.ProductDiscountPrice}}
-                            </blockquote>
-
-                            <div class="row my-4">
-                                <div class="col-lg-6 col-md-6 col-12">
-                                    <img src="{% static 'images/businesswoman-using-tablet-analysis.jpg' %}" class="topics-detail-block-image img-fluid">
-                                </div>
-
-                                <div class="col-lg-6 col-md-6 col-12 mt-4 mt-lg-0 mt-md-0">
-                                    <img src="{% static 'images/colleagues-working-cozy-office-medium-shot.jpg' %}" class="topics-detail-block-image img-fluid">
-                                </div>
-                            </div>
-
-                            <p>Most people start with freelancing skills they already have as a side hustle to build up income. This extra cash can be used for a vacation, to boost up savings, investing, build business.</p>
+                    <!-- PRODUCT HEADER -->
+                    <div class="row mb-5">
+                        <div class="col-lg-10 mx-auto text-center">
+                            <h1 class="product-title text-white">
+                                {{ product.ProductName }}
+                            </h1>
+                            <p class="product-subtitle">
+                                {{ product.ShortDescription }}
+                            </p>
                         </div>
-
                     </div>
-                </div>
-            </section>
+
+                    <!-- MAIN PRODUCT AREA -->
+                    <div class="row align-items-start">
+
+                        <!-- IMAGE GALLERY -->
+<div class="col-lg-6 mb-4">
+
+    <!-- MAIN SLIDER -->
+    <div id="productMainSlider" class="carousel slide mb-3" data-bs-ride="false" data-bs-interval="4000">
+        <div class="carousel-inner">
+            <div class="carousel-item active" id="slide-0">
+                <img src="{{ product.ProductImage1.url }}" class="product-main-image">
+            </div>
+            <div class="carousel-item" id="slide-1">
+                <img src="{{ product.ProductImage2.url }}" class="product-main-image">
+            </div>
+            <div class="carousel-item" id="slide-2">
+                <img src="{{ product.ProductImage3.url }}" class="product-main-image">
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#productMainSlider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#productMainSlider" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- THUMBNAILS -->
+    <div class="product-thumbnails d-flex justify-content-center gap-3">
+        <img src="{{ product.ProductImage1.url }}" class="thumbnail active"
+             data-bs-target="#productMainSlider" data-bs-slide-to="0">
+
+        <img src="{{ product.ProductImage2.url }}" class="thumbnail"
+             data-bs-target="#productMainSlider" data-bs-slide-to="1">
+
+        <img src="{{ product.ProductImage3.url }}" class="thumbnail"
+             data-bs-target="#productMainSlider" data-bs-slide-to="2">
+    </div>
+
+</div>
 
 
-            <section class="section-padding section-bg">
-                <div class="container">
-                    <div class="row justify-content-center">
 
-                        <div class="col-lg-5 col-12">
-                            <img src="{% static 'images/rear-view-young-college-student.jpg' %}" class="newsletter-image img-fluid" alt="">
-                        </div>
+                        <!-- PRODUCT INFO -->
+                        <div class="col-lg-6">
 
-                        <div class="col-lg-5 col-12 subscribe-form-wrap d-flex justify-content-center align-items-center">
-                            <form class="custom-form subscribe-form" action="#" method="post" role="form">
-                                <h4 class="mb-4 pb-2">Get Newsletter</h4>
+                            <div class="product-info-card">
 
-                                <input type="email" name="subscribe-email" id="subscribe-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email Address" required="">
-
-                                <div class="col-lg-12 col-12">
-                                    <button type="submit" class="form-control border border-white border-3">Subscribe</button>
+                                <!-- Price -->
+                                <div class="price-section">
+                                    <span class="old-price">
+                                        ₹{{ product.ProductPrice }}
+                                    </span>
+                                    <span class="new-price">
+                                        ₹{{ product.ProductDiscountPrice }}
+                                    </span>
                                 </div>
-                            </form>
-                        </div>
+                                {% if product.CategoryId.CategoryName == "TEMPLATE" %}
+                                    <ul class="product-highlights">
+                                    <li>✔ Quality checked by InfiniDigital Team</li>
+                                    <li>✔ 6 months technical support</li>
+                                    <li>✔ 1 year of free updates</li>
+                                    <li>✔ 100% money back guarantee</li>
+                                </ul>
+                                {% endif %}
 
+                                {% if product.CategoryId.CategoryName != "TEMPLATE" %}
+                                <!-- Highlights -->
+                                <ul class="product-highlights">
+                                    <li>✔ Lifetime access</li>
+                                    <li>✔ Beginner friendly</li>
+                                    <li>✔ Certificate included</li>
+                                    <li>✔ 30-day money-back guarantee</li>
+                                </ul>
+                                {% endif %}
+
+                                <!-- CTA -->
+                                <div class="cta-buttons">
+                                    <a href="#" class="btn btn-buy">
+                                         Buy Now
+                                    </a>
+
+                                    <a href="{% url 'cart' product.id %}" class="btn btn-cart">
+                                         Add to Cart
+                                    </a>
+
+                                    {% if product.DemoFolder %}
+                                    <a href="/template_demo/{{ product.DemoFolder }}/index.html"
+                                       target="_blank"
+                                       class="btn btn-demo">
+                                         Live Preview <i class="bi bi-box-arrow-up-right"></i>
+                                    </a>
+                                    {% endif %}
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRODUCT DESCRIPTION -->
+                    <div class="row mt-5">
+                        <div class="col-lg-10 mx-auto">
+                            <h3 class="section-title text-white mb-3">
+                                Product Description
+                            </h3>
+                            <p class="product-description">
+                                {{ product.LongDescription }}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
         </main>
 
         {% include 'footer.html' %}
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('productMainSlider');
+            const thumbnails = document.querySelectorAll('.thumbnail');
 
+            // When a slide changes, update active thumbnail
+            carousel.addEventListener('slid.bs.carousel', function (event) {
+                thumbnails.forEach((thumb) => thumb.classList.remove('active'));
+                // event.to is the index of the new active slide
+                thumbnails[event.to].classList.add('active');
+            });
+
+            // When clicking thumbnail, activate corresponding slide
+            thumbnails.forEach((thumb, index) => {
+                thumb.addEventListener('click', () => {
+                    // Update carousel
+                    const carouselInstance = bootstrap.Carousel.getInstance(carousel);
+                    carouselInstance.to(index);
+
+                    // Update active class manually
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                });
+            });
+        });
+        </script>
+        <script>
+        const carouselEl = document.getElementById('productMainSlider');
+        const carousel = new bootstrap.Carousel(carouselEl, {
+          interval: 4000,  // 4 seconds
+          ride: 'carousel' // start automatically
+        });
+        </script>
     </body>
 </html>
