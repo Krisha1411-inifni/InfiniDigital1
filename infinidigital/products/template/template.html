@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDFs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexaVerse - Digital Excellence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/templatemo-nexaverse.css' %}">
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-infinity">
+            <svg viewBox="0 0 400 200">
+                <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#13547a"/>
+                        <stop offset="100%" stop-color="#80d0c7"/>
+                    </linearGradient>
+                </defs>
+                <path d="M80,100
+                         C80,40 180,40 200,100
+                         C220,160 320,160 320,100
+                         C320,40 220,40 200,100
+                         C180,160 80,160 80,100 Z"
+                      stroke="url(#gradient)"
+                      stroke-width="10"
+                      stroke-linecap="round"
+                      fill="none"/>
+            </svg>
+        </div>
+        <div class="loading-text">InfiniDigital...</div>
+    </div>
+<div class="content-section" id="gallery">
+                <div class="section-header-small">
+                    <div class="small-logo">
+                        <img style="height:25px; width:40px;" src="{% static 'images/logo3.png' %}">
+                    </div>
+                    <div class="small-brand">
+                        <h3>InfiniDigital</h3>
+                    </div>
+                </div>
+                <a class="back-btn" href="/OurServices">← Back to Menu</a>
+
+                <div class="section-header">
+                    <h2 class="section-title">Our Portfolio</h2>
+                    <p class="section-subtitle">Explore our latest works</p>
+                </div>
+
+                <div class="gallery-grid">
+                    {% for product in products %}
+                        <a href="{% url 'topic_detail' product.id %}"
+                           class="gallery-item"
+                           data-product-id="{{ product.id }}"
+                           data-product-name="{{ product.ProductName }}"
+                           data-product-price="{{ product.ProductDiscountPrice }}">
+                             <div class="image-wrapper">
+                                {% if product.ProductImage1 %}
+                                    <img src="{{ product.ProductImage1.url }}" class="img-default" alt="{{ product.ProductName }}">
+                                {% endif %}
+
+                                {% if product.ProductImage2 %}
+                                    <img src="{{ product.ProductImage2.url }}" class="img-hover" alt="{{ product.ProductName }}">
+                                {% endif %}
+                             </div>
+                                <!-- Top-left tag -->
+                                <span class="tag tag-top-left">{{ product.CategoryId.CategoryName }}</span>
+
+                                <!-- Top-right actions -->
+                                <div class="card-actions top-right">
+                                    <span class="icon-btn cart" title="Add to Cart"><i class="bi bi-bag"></i></span>
+                                    <span class="icon-btn buy" title="Buy Now"><i class="bi bi-cart"></i></span>
+                                </div>
+
+                            <div class="overlay overlay-top">
+                                <h1>{{ product.ProductName }}</h1>
+                            </div>
+
+                            <div class="overlay overlay-bottom">
+                                <p class="price"><strike>₹{{ product.ProductPrice }}</strike>&nbsp;&nbsp;&nbsp;₹{{ product.ProductDiscountPrice }}</p>
+                                <hr class="fancy-hr">
+                                <p>{{ product.ShortDescription }}</p>
+                                <p class="cta">View Details →</p>
+                            </div>
+                        </a>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        <footer class="footer" id="mainFooter">
+            <p>© 2026 NexaVerse. Crafted with passion. Design by <a href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+        </footer>
+<script src="{% static 'js/templatemo-nexa-scripts.js' %}"></script>
+
+</body>
+</html>

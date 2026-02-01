@@ -1,0 +1,13 @@
+<div class="container my-4">
+  <div class="d-flex justify-content-between align-items-center small text-muted">
+    <span class="{% if step >= 1 %}fw-bold text-primary{% endif %}">Cart</span>
+    <span class="{% if step >= 2 %}fw-bold text-primary{% endif %}">Checkout</span>
+    <span class="{% if step >= 3 %}fw-bold text-primary{% endif %}">Payment</span>
+    <span class="{% if step >= 4 %}fw-bold text-primary{% endif %}">Downloads</span>
+  </div>
+  <div class="progress mt-2" style="height:4px;">
+    <div class="progress-bar bg-primary"
+         style="width:{% widthratio step 4 100 %}%">
+    </div>
+  </div>
+</div>

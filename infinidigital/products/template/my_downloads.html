@@ -1,0 +1,70 @@
+{% include "header.html" %}
+<header class="site-header d-flex flex-column justify-content-center align-items-center">
+                <div class="container">
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-5 col-12">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Homepage</a></li>
+
+                                    <li class="breadcrumb-item active" aria-current="page">My Downloads</li>
+                                </ol>
+                            </nav>
+
+                            <h2 class="text-white">My Downloads</h2>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+{% include "partials/checkout_progress.html" with step=4 %}
+
+
+<div class="container py-5">
+  <h2 class="mb-4 text-white">My Downloads</h2>
+
+  {% if purchased_items %}
+  <table class="table table-bordered text-white">
+    <thead class="table-dark">
+      <tr>
+        <th>Product</th>
+        <th>Order</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for item in purchased_items %}
+      <tr>
+        <td>{{ item.product.ProductName }}</td>
+        <td>#{{ item.order.id }}</td>
+        <td>
+          <span class="badge bg-success">Verified</span>
+        </td>
+        <td>
+          <a href="{% url 'download_product' item.product.id %}"
+             class="btn btn-success btn-sm">
+            Download
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{% url 'download_zip' %}" class="btn btn-primary mt-3">
+    Download All as ZIP
+  </a>
+
+  {% else %}
+  <div class="alert alert-warning text-center">
+    No purchases yet.
+  </div>
+  {% endif %}
+</div>
+
+
+{% include "footer.html" %}
