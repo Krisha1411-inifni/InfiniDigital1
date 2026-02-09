@@ -46,32 +46,6 @@ urlpatterns = [
         serve,
         {"document_root": settings.DEMO_ROOT},
     ),
-    path('Checkout',views.checkout,name='Checkout'),
-    path('create-order/', views.create_order, name='create_order'),
-
-    path('payment/<int:order_id>/',views.payment,name='payment'),
-    path(
-        "payment-pending/<int:order_id>/",
-        views.payment_pending,
-        name="payment_pending"
-    ),
-path(
-        "download/<int:product_id>/",
-        views.download_product,
-        name="download_product"
-    ),
-    path(
-        "download-zip/",
-        views.download_zip,
-        name="download_zip"
-    ),
-
-    # My downloads page
-    path(
-        "my-downloads/",
-        views.my_downloads,
-        name="my_downloads"
-    ),
 ]
 
 if settings.DEBUG:

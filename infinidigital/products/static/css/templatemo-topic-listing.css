@@ -1735,7 +1735,6 @@ strong {
 }
 
  .showcase {
-     padding: 50px 0;
      position: relative;
 }
  .hexagon-container {
@@ -1749,8 +1748,6 @@ strong {
      padding: 0 20px;
 }
  .hexagon {
-     width: 320px;
-     height: 350px;
      position: relative;
      margin: 20px;
      transition: all 0.4s ease;
@@ -1764,7 +1761,6 @@ strong {
      position: relative;
      transform: rotate(30deg);
      border-radius: 25px;
-     padding: 35px 25px;
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -1786,7 +1782,6 @@ strong {
      border: 1px solid rgba(0, 255, 255, 0.3);
 }
  .hexagon-icon {
-     font-size: 3.8rem;
      margin-bottom: 20px;
      transform: rotate(-30deg);
      color:var(--primary-color);
@@ -1797,8 +1792,6 @@ strong {
      transform: rotate(0deg);
 }
  .hexagon h4 {
-     font-size: 1.5rem;
-     color: var(--white-color);
      transform: rotate(-30deg);
      margin-bottom: 15px;
      font-weight: bold;
@@ -1809,11 +1802,9 @@ strong {
      transform: rotate(0deg);
 }
  .hexagon p {
-     font-size: 1.2rem;
      color: #e0e0e0;
      transform: rotate(-30deg);
      line-height: 1.5;
-     max-width: 620px;
      word-wrap: break-word;
      hyphens: auto;
      transition: all 0.4s ease;
